@@ -47,7 +47,7 @@ namespace MazeAssignment
         /// Returns the data stored in the node
         /// </summary>
         /// <returns>The data from the node</returns>
-        public T GetData()
+        public T GetElement()
         {
             return element;
         }

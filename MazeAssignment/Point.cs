@@ -1,5 +1,5 @@
 ﻿/**
-* Point – Node constructor plus getters and override tostring method
+* Point – Point constructor plus getters and override tostring method
 *
 * <pre>
 *
