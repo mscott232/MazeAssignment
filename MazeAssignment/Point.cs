@@ -56,7 +56,7 @@ namespace MazeAssignment
         /// Returns the column of the point
         /// </summary>
         /// <returns>The int value of the column</returns>
-        public int Column()
+        public int GetColumn()
         {
             return column;
         }

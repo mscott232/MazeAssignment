@@ -1,5 +1,5 @@
 ﻿/**
-* Stack – Methods to invoke on the contructed stack
+* Stack – Methods to invoke on the constructed stack
 *
 * <pre>
 *
