@@ -84,5 +84,23 @@ namespace MazeAssignment
                 return current.GetElement();
             }
         }
+
+        /// <summary>
+        /// Return the size of the current stack
+        /// </summary>
+        /// <returns>The size of the stack</returns>
+        public int GetSize()
+        {
+            return size;
+        }
+
+        /// <summary>
+        /// Returns true if stack is less than or equal to 0, true if greater
+        /// </summary>
+        /// <returns>True if less than or equal to 0, false when greater</returns>
+        public bool IsEmpty()
+        {
+            return size <= 0;
+        }
     }
 }
