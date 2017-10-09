@@ -1,5 +1,5 @@
 ﻿/**
-* Node – Node constructor plus getters and setters
+* Node – Node constructor plus getters
 *
 * <pre>
 *
