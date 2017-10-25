@@ -1,4 +1,23 @@
-﻿using System;
+﻿/**
+* Program class - class to read maze file and traverse maze
+*
+* <pre>
+*
+* Assignment: #2
+* Course: ADEV-3001
+* Date Created: October 25, 2017
+* 
+* Revision Log
+* Who        When       Reason
+* --------- ---------- ----------------------------------
+*
+* </pre>
+*
+* @author Matt Scott
+* @version 1.0
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +28,8 @@ namespace MazeAssignment
 {
     class Program
     {
+        const string STUDENT = "Matt Scott 0286401";
+
         static void Main(string[] args)
         {
             String[] lines = File.ReadAllLines(@"C:\Users\Matt\Documents\School\Term 5\Programming 4\Assignments\Assignment 2\2 Final Milestone\maze.maze");
@@ -27,6 +48,24 @@ namespace MazeAssignment
                     maze[i - 2, j] = items[j];
                 }
             }
+
+            DepthFirst depthFirst = new DepthFirst(maze);
+
+            bool result = depthFirst.DepthFirstSearch(startingPoint[0], startingPoint[1]);
+
+            if(!result)
+            {
+                Console.WriteLine(depthFirst.NoExit());
+                Console.WriteLine(depthFirst.DumpMaze());
+            }
+            else
+            {
+                Console.WriteLine(depthFirst.ExitFound());
+                Stack<Point> stack = depthFirst.PathToFollow();
+                Console.WriteLine(depthFirst.DumpMaze());
+            }
+
+            Console.ReadKey();
         }
     }
 }

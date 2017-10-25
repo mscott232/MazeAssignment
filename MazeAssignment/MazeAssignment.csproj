@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DepthFirst.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="NodeTest.cs" />
     <Compile Include="Point.cs" />
