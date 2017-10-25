@@ -95,7 +95,7 @@ namespace MazeAssignment
         }
 
         /// <summary>
-        /// Returns true if stack is less than or equal to 0, true if greater
+        /// Returns true if stack is less than or equal to 0, false if greater
         /// </summary>
         /// <returns>True if less than or equal to 0, false when greater</returns>
         public bool IsEmpty()
