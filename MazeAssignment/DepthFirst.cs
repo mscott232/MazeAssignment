@@ -34,6 +34,7 @@ namespace MazeAssignment
         private Point p;
         private bool result = false;
         private Point startingPoint;
+        private Stack<Point> exitStack;
 
         /// <summary>
         /// Contructor for the DepthFirst class
@@ -135,9 +136,24 @@ namespace MazeAssignment
         /// Returns the stack
         /// </summary>
         /// <returns>The stack</returns>
-        public Stack<Point> PathToFollow()
+        public string PathToFollow()
         {
-            return stack;
+            List<String> list = new List<string>();
+            exitStack = new Stack<Point>();
+            string stringResult = null;
+
+            while(!stack.IsEmpty())
+            {
+                Point point = stack.Pop();
+                exitStack.Push(point);
+                list.Add(point.ToString());
+            }
+
+            foreach(var item in list.Reverse<String>())
+            {
+                stringResult += String.Format("{0}\n", item);
+            }
+            return stringResult;
         }
 
         /// <summary>
@@ -148,9 +164,9 @@ namespace MazeAssignment
         {
             StringBuilder stringBuilder = new StringBuilder();
 
-            while(!stack.IsEmpty())
+            while(!exitStack.IsEmpty())
             {
-                Point point = stack.Pop();
+                Point point = exitStack.Pop();
 
                 // Determine if the point is not equal to the exit point, if it isn't it will be replaced by a .
                 if (point != p)

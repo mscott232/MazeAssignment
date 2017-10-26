@@ -61,7 +61,7 @@ namespace MazeAssignment
             else
             {
                 Console.WriteLine(depthFirst.ExitFound());
-                Stack<Point> stack = depthFirst.PathToFollow();
+                Console.WriteLine(depthFirst.PathToFollow());
                 Console.WriteLine(depthFirst.DumpMaze());
             }
 
