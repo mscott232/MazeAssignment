@@ -67,7 +67,7 @@ namespace MazeAssignment
         /// <returns>The row and column string</returns>
         public override string ToString()
         {
-            return string.Format("{0}, {1}", row, column);
+            return string.Format("[{0},{1}]", row, column);
         }
 
         public int CompareTo(Point other)

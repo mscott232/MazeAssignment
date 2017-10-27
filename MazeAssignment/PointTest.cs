@@ -33,7 +33,7 @@ namespace MazeAssignment
         #region Test Fixture Setup and Tear Down
 
         /**
-         * Default constructor for test class LinkedListTest
+         * Default constructor for test class PointTest
          */
         public PointTest() { }
 
@@ -98,7 +98,7 @@ namespace MazeAssignment
         {
             Point point1 = new Point(1, 1);
 
-            Assert.That(point1.ToString(), Is.EqualTo("1, 1"));
+            Assert.That(point1.ToString(), Is.EqualTo("[1,1]"));
         }
     }
 }

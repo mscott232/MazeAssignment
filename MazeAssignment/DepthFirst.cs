@@ -35,6 +35,7 @@ namespace MazeAssignment
         private bool result = false;
         private Point startingPoint;
         private Stack<Point> exitStack;
+        private bool depthFirstSearchFinished = false;
 
         /// <summary>
         /// Contructor for the DepthFirst class
@@ -52,20 +53,21 @@ namespace MazeAssignment
         /// <returns>True when exit is found, false when no exit</returns>
         public bool DepthFirstSearch(int row, int column)
         {                     
-            char visitedMarker = 'V';     
-            
+            char visitedMarker = 'V';
+
             // Create a starting point Point to use in ExitFound()
-            if(stack.IsEmpty())
+            if (stack.IsEmpty())
             {
                 startingPoint = new Point(row, column);
             }
 
             // Determine if the current position is the exit
-            if(maze[row, column] == 'E')
+            if (maze[row, column] == 'E')
             {
                 p = new Point(row, column);
                 stack.Push(p);
                 result = true;
+                depthFirstSearchFinished = true;
             }
             else
             {
@@ -102,6 +104,7 @@ namespace MazeAssignment
                     if (stack.IsEmpty())
                     {                        
                         result = false;
+                        depthFirstSearchFinished = true;
                     }
                     else
                     {
@@ -120,6 +123,11 @@ namespace MazeAssignment
         /// <returns>String stating there is no exit</returns>
         public string NoExit()
         {
+            if(!depthFirstSearchFinished)
+            {
+                throw new InvalidOperationException("Depth First Search did not finish");
+            }
+
             return "There is no exit out of the maze.";
         }
 
@@ -129,31 +137,39 @@ namespace MazeAssignment
         /// <returns>String stating an exit was found</returns>
         public string ExitFound()
         {
-            return String.Format("Path to follow from Start [{0}] to Exit [{1}] - {2} steps.", startingPoint, p.ToString(), stack.GetSize());
+            if (!depthFirstSearchFinished)
+            {
+                throw new InvalidOperationException("Depth First Search did not finish");
+            }
+
+            return String.Format("Path to follow from Start {0} to Exit {1} - {2} steps:", startingPoint, p.ToString(), stack.GetSize());
         }
         
         /// <summary>
         /// Returns the stack
         /// </summary>
         /// <returns>The stack</returns>
-        public string PathToFollow()
+        public Stack<Point> PathToFollow()
         {
-            List<String> list = new List<string>();
+            if (!depthFirstSearchFinished)
+            {
+                throw new InvalidOperationException("Depth First Search did not finish");
+            }
+
             exitStack = new Stack<Point>();
-            string stringResult = null;
 
             while(!stack.IsEmpty())
             {
                 Point point = stack.Pop();
                 exitStack.Push(point);
-                list.Add(point.ToString());
+
+                if (point != p)
+                {
+                    maze[point.GetRow(), point.GetColumn()] = '.';
+                }
             }
 
-            foreach(var item in list.Reverse<String>())
-            {
-                stringResult += String.Format("{0}\n", item);
-            }
-            return stringResult;
+            return exitStack;
         }
 
         /// <summary>
@@ -162,18 +178,12 @@ namespace MazeAssignment
         /// <returns>String of the maze</returns>
         public string DumpMaze()
         {
-            StringBuilder stringBuilder = new StringBuilder();
-
-            while(!exitStack.IsEmpty())
+            if (!depthFirstSearchFinished)
             {
-                Point point = exitStack.Pop();
-
-                // Determine if the point is not equal to the exit point, if it isn't it will be replaced by a .
-                if (point != p)
-                {
-                    maze[point.GetRow(), point.GetColumn()] = '.';
-                }
+                throw new InvalidOperationException("Depth First Search did not finish");
             }
+
+            StringBuilder stringBuilder = new StringBuilder();
 
             for(int i = 0; i < maze.GetLength(0); i++)
             {

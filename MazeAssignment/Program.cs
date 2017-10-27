@@ -32,7 +32,10 @@ namespace MazeAssignment
 
         static void Main(string[] args)
         {
-            String[] lines = File.ReadAllLines(@"C:\Users\Matt\Documents\School\Term 5\Programming 4\Assignments\Assignment 2\2 Final Milestone\maze.maze");
+            //String[] lines = File.ReadAllLines(@"C:\Users\Matt\Documents\School\Term 5\Programming 4\Assignments\Assignment 2\2 Final Milestone\maze.maze");
+            //String[] lines = File.ReadAllLines(@"C:\Users\Matt\Documents\School\Term 5\Programming 4\Assignments\Assignment 2\2 Final Milestone\TestMazeNoExit.maze");
+            String[] lines = File.ReadAllLines(@"C:\Users\Matt\Documents\School\Term 5\Programming 4\Assignments\Assignment 2\2 Final Milestone\TestMazeExit.maze");
+
 
             int[] dimensions = lines[0].Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
             int[] startingPoint = lines[1].Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
@@ -61,11 +64,15 @@ namespace MazeAssignment
             else
             {
                 Console.WriteLine(depthFirst.ExitFound());
-                Console.WriteLine(depthFirst.PathToFollow());
+                Stack<Point> stack = depthFirst.PathToFollow();
+                while (!stack.IsEmpty())
+                {
+                    Console.WriteLine(String.Format("{0}", stack.Pop().ToString()));
+                }
                 Console.WriteLine(depthFirst.DumpMaze());
             }
 
             Console.ReadKey();
-        }
+        }        
     }
 }

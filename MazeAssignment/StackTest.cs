@@ -33,7 +33,7 @@ namespace MazeAssignment
         #region Test Fixture Setup and Tear Down
 
         /**
-         * Default constructor for test class LinkedListTest
+         * Default constructor for test class StackTest
          */
         public StackTest() { }
 
